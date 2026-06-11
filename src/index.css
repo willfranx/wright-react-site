@@ -1,0 +1,116 @@
+:root {
+  --text: #4f4a46;
+  --text-h: #171412;
+  --bg: #f7f1e8;
+  --border: rgba(28, 23, 18, 0.12);
+  --code-bg: rgba(255, 255, 255, 0.75);
+  --accent: #b34f28;
+  --accent-bg: rgba(179, 79, 40, 0.1);
+  --accent-border: rgba(179, 79, 40, 0.3);
+  --shadow:
+    rgba(15, 12, 8, 0.1) 0 18px 40px -20px, rgba(15, 12, 8, 0.08) 0 8px 18px -10px;
+
+  --sans: 'Avenir Next', 'Segoe UI', 'Helvetica Neue', sans-serif;
+  --heading: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', serif;
+  --mono: ui-monospace, 'SFMono-Regular', 'Cascadia Code', monospace;
+
+  font: 18px/1.55 var(--sans);
+  letter-spacing: 0.01em;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme='dark'] {
+  --text: #c8bfb5;
+  --text-h: #f5f2ee;
+  --bg: #1a1612;
+  --border: rgba(245, 242, 238, 0.12);
+  --code-bg: rgba(60, 54, 48, 0.65);
+  --accent: #e8a078;
+  --accent-bg: rgba(232, 160, 120, 0.12);
+  --accent-border: rgba(232, 160, 120, 0.35);
+  --shadow:
+    rgba(0, 0, 0, 0.35) 0 18px 40px -20px, rgba(0, 0, 0, 0.2) 0 8px 18px -10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100svh;
+  background: var(--bg);
+  transition: background-color 0.3s ease;
+}
+
+body,
+button,
+a,
+input,
+textarea {
+  font: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+h1,
+h2 {
+  font-family: var(--heading);
+  font-weight: 600;
+  color: var(--text-h);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+h1 {
+  font-size: clamp(2.6rem, 5vw, 5rem);
+  margin: 0 0 16px;
+}
+
+h2 {
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
+  margin: 0 0 10px;
+}
+
+p {
+  margin: 0;
+}
+
+code {
+  font-family: var(--mono);
+  font-size: 0.95em;
+  padding: 0.15rem 0.45rem;
+  border-radius: 0.4rem;
+  background: var(--code-bg);
+  color: var(--text-h);
+}
