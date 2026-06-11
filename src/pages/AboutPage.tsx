@@ -1,5 +1,6 @@
 import resumePdf from "../assets/img/Wright_Franklin_Resume_2026.pdf";
 import wrightImg from "../assets/img/wright.jpg";
+import { EmailIcon, GitHubIcon, LinkedInIcon } from "../ui/ConnectIcons";
 
 export default function AboutPage() {
   return (
@@ -9,7 +10,9 @@ export default function AboutPage() {
           <p className="eyebrow">about / who I am</p>
           <h1 id="about-title">Software engineer, writer, and photographer.</h1>
           <p className="lede">
-            Hi! I'm Wright, an enthusiastic learner working as a software engineer in Anchorage, Alaska. I care about community and using technology to create positive change.
+            Hi! I'm Wright, an enthusiastic learner working as a software
+            engineer in Anchorage, Alaska. I care about community and using
+            technology to create positive change.
           </p>
         </div>
 
@@ -45,11 +48,54 @@ export default function AboutPage() {
         <article className="panel stack-panel">
           <h2>Focus areas</h2>
           <ul className="feature-list">
-            <li>Creativity with a social lens</li>
-            <li>Community-centered activism</li>
-            <li>Panoramic landscape photography</li>
+            <li>Software engineering with a social lens</li>
+            <li>Community-centered activism and creativity</li>
+            <li>Landscape photography</li>
           </ul>
         </article>
+
+        <section
+          className="connect-section panel"
+          aria-labelledby="connect-title"
+        >
+          <div className="connect-copy">
+            <p className="eyebrow">connect with me</p>
+            <h2 id="connect-title">Say hello</h2>
+            <p>
+              Reach out by email or visit my GitHub and LinkedIn to see more of
+              my work and background.
+            </p>
+          </div>
+
+          <div className="connect-links">
+            <a
+              className="connect-button connect-email"
+              href="mailto:wright@wrightfranklin.com"
+              aria-label="Email me"
+            >
+              <EmailIcon />
+              Email
+            </a>
+            <a
+              className="connect-button"
+              href="https://github.com/willfranx"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <GitHubIcon />
+              GitHub
+            </a>
+            <a
+              className="connect-button"
+              href="https://www.linkedin.com/in/willfranx"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <LinkedInIcon />
+              LinkedIn
+            </a>
+          </div>
+        </section>
       </div>
     </section>
   );
