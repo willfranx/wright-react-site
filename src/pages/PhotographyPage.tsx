@@ -1,4 +1,4 @@
-import { photoGrid } from '../content/photoGrid'
+import { photoGrid } from "../content/photoGrid";
 
 export default function PhotographyPage() {
   return (
@@ -25,20 +25,18 @@ export default function PhotographyPage() {
       </div>
 
       <div className="photo-grid">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
-            {photoGrid.map((photo) => (
-              <div 
-                className="w-full h-64 bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center photo-card"
-              >
-                <img
-                  src={photo.src}
-                  alt={photo.label}
-                  className="w-full h-full object-contain"
-                />
-              </div>
-            ))}
-          </div>
+        <div className="grid">
+          {photoGrid.map((photo) => (
+            <div className="photo-card photo-image">
+              <img
+                src={photo.src}
+                alt={photo.label}
+                className="object-contain"
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
-  )
+  );
 }

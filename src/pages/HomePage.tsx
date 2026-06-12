@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useState } from "react";
 import heroImg from "../assets/img/J1256.jpeg";
 import { EmailIcon, GitHubIcon, LinkedInIcon } from "../ui/ConnectIcons";
-import { getRandomQuote } from '../content/quoteFooter';
-
+import { getRandomQuote } from "../content/quoteFooter";
 
 export default function HomePage() {
-const [quoteItem] = useState(() => getRandomQuote());
-const formattedQuote = quoteItem?.Quote.replace(/<br\s*\/?>/gi, '\n');
+  const [quoteItem, setUserData] = useState(() => getRandomQuote());
+
+  const formattedQuote = quoteItem?.Quote.replace(/<br\s*\/?>/gi, "\n");
 
   return (
     <section className="page home-page" aria-labelledby="home-title">
@@ -73,25 +73,34 @@ const formattedQuote = quoteItem?.Quote.replace(/<br\s*\/?>/gi, '\n');
       </section>
 
       <div className="card-grid highlight-grid">
-      {quoteItem ? (
-        <div className="card-grid highlight-grid">
-          {quoteItem && (
-            <article className="panel" key={quoteItem.Quote}>
-              <p className="card-kicker">Here's a quote that I love:</p>
-              {/* The style prop ensures the newlines are rendered as visual breaks */}
-              <h4 style={{ whiteSpace: 'pre-line' }}>
-                "{formattedQuote}"
-              </h4>
-              <p className="card-meta">
-                — {quoteItem.Author}, <em>{quoteItem.Book}</em>
-              </p>
-            </article>
-          )}
-    </div>
-      ) : (
-        <p>No quote found.</p>
-      )}
-    </div>
+        {quoteItem ? (
+          <div className="card-grid highlight-grid">
+            {quoteItem && (
+              <article className="panel" key={quoteItem.Quote}>
+                <p className="card-kicker">Here's a quote that I love:</p>
+                {/* The style prop ensures the newlines are rendered as visual breaks */}
+                <h4 style={{ whiteSpace: "pre-line" }}>"{formattedQuote}"</h4>
+                <p className="card-meta">
+                  — {quoteItem.Author}, <em>{quoteItem.Book}</em>
+                </p>
+                <br></br>
+                <button
+                  className="connect-button refresh-button"
+                  onClick={() => {
+                    const newQuote = getRandomQuote();
+                    setUserData(newQuote);
+                  }}
+                  aria-label="Refresh quote"
+                >
+                  Discover another quote
+                </button>
+              </article>
+            )}
+          </div>
+        ) : (
+          <p>No quote found.</p>
+        )}
+      </div>
     </section>
   );
 }

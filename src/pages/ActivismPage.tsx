@@ -19,7 +19,13 @@ export default function ActivismPage() {
             <h2>{item.title}</h2>
             <img src={item.image} alt={item.title} />
             <p>{item.description}</p>
-            <a href={item.link} target="_blank" rel="noopener noreferrer">
+            <br></br>
+            <a
+              className="connect-button"
+              href={item.link}
+              target="_blank"
+              rel="noreferrer"
+            >
               Learn more
             </a>
           </article>
