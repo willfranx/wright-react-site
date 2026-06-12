@@ -10,10 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "3": "^2.1.0",
     "papaparse": "^5.5.3",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
-    "react-router-dom": "^7.17.0"
+    "react-photo-sphere-viewer": "^6.2.3",
+    "react-router-dom": "^7.17.0",
+    "three": "^0.184.0",
+    "uevent": "^3.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

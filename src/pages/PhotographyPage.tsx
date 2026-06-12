@@ -25,11 +25,19 @@ export default function PhotographyPage() {
       </div>
 
       <div className="photo-grid">
-        {photoGrid.map((photo) => (
-          <figure className="photo-card" key={photo.src}>
-            <img className="photo-image" src={photo.src} alt={photo.label} />
-          </figure>
-        ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
+            {photoGrid.map((photo) => (
+              <div 
+                className="w-full h-64 bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center photo-card"
+              >
+                <img
+                  src={photo.src}
+                  alt={photo.label}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+            ))}
+          </div>
       </div>
     </section>
   )
