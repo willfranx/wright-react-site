@@ -1,4 +1,4 @@
-import resumePdf from "../assets/img/Wright_Franklin_Resume_2026.pdf";
+import resumePdf from "../assets/img/Wright_Franklin_Resume.pdf";
 import wrightImg from "../assets/img/wright.jpg";
 import { EmailIcon, GitHubIcon, LinkedInIcon } from "../ui/ConnectIcons";
 
