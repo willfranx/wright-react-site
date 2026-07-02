@@ -1,4 +1,4 @@
-import { photoGrid } from '../content/photoGrid'
+import { photoYearGroups } from '../content/photoGrid'
 import { blockComponents } from '../content/siteComponents'
 
 export default function PhotographyPage() {
@@ -19,16 +19,39 @@ export default function PhotographyPage() {
           Scroll to begin. The photos are arranged top to bottom by most recent year,
           grouped by location.
         </p>
+        <br></br>
       </div>
 
-      <div className={blockComponents.photoGrid}>
-        <div className="grid grid-cols-1 gap-[18px]">
-          {photoGrid.map((photo) => (
-            <div className={blockComponents.photoCard} key={photo.src}>
-              <img src={photo.src} alt={photo.label} className="max-h-[400px] w-full object-contain" />
+      <div className="grid gap-12">
+        {photoYearGroups.map((yearGroup) => (
+          <section key={yearGroup.year} aria-labelledby={`year-${yearGroup.year}`}>
+            <h2 className={`${blockComponents.h2} mb-6`} id={`year-${yearGroup.year}`}>
+              {yearGroup.year}
+            </h2>
+
+            <div className="grid gap-10">
+              {yearGroup.groups.map((group) => (
+                <section key={group.key} aria-labelledby={group.key}>
+                  <h3 className="mb-4 text-[1.05rem] font-medium tracking-[0.02em] text-[#171412] dark:text-[#f5f2ee]">
+                    {group.title}
+                  </h3>
+
+                  <div className="grid grid-cols-1 gap-[18px]">
+                    {group.photos.map((photo) => (
+                      <div className={blockComponents.photoCard} key={photo.src}>
+                        <img
+                          src={photo.src}
+                          alt={photo.label}
+                          className="max-h-[400px] w-full object-contain"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              ))}
             </div>
-          ))}
-        </div>
+          </section>
+        ))}
       </div>
     </section>
   )
