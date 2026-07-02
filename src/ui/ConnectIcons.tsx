@@ -1,7 +1,9 @@
+import { blockComponents } from '../content/siteComponents'
+
 export function GitHubIcon() {
   return (
     <svg
-      className="connect-icon"
+      className={blockComponents.icon}
       aria-hidden="true"
       viewBox="0 0 24 24"
       focusable="false"
@@ -14,7 +16,7 @@ export function GitHubIcon() {
 export function LinkedInIcon() {
   return (
     <svg
-      className="connect-icon"
+      className={blockComponents.icon}
       aria-hidden="true"
       viewBox="0 0 24 24"
       focusable="false"
@@ -27,7 +29,7 @@ export function LinkedInIcon() {
 export function EmailIcon() {
   return (
     <svg
-      className="connect-icon"
+      className={blockComponents.icon}
       aria-hidden="true"
       viewBox="0 0 24 24"
       focusable="false"

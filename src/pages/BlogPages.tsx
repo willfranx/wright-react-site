@@ -1,28 +1,36 @@
-import { Link, Navigate, useParams } from "react-router-dom";
-import { blogPosts } from "../content/blogPosts";
+import { Link, Navigate, useParams } from 'react-router-dom'
+import { blogPosts } from '../content/blogPosts'
+import { blockComponents } from '../content/siteComponents'
 
 export function BlogIndexPage() {
   return (
-    <section className="page blog-page" aria-labelledby="blog-title">
-      <div className="page-copy">
-        <p className="eyebrow">blog / writing</p>
-        <h1 id="blog-title">Reflections and thoughts.</h1>
-        <p className="lede">
-          A space for me to share opinions and ideas, all of which are my own and do not reflect the views of any organization.
+    <section className={blockComponents.page} aria-labelledby="blog-title">
+      <div className={blockComponents.pageCopy}>
+        <p className={blockComponents.eyebrow}>blog / writing</p>
+        <h1 className={blockComponents.h1} id="blog-title">
+          Reflections and thoughts.
+        </h1>
+        <p className={blockComponents.lede}>
+          A space for me to share opinions and ideas, all of which are my own and do not
+          reflect the views of any organization.
         </p>
       </div>
 
-      <div className="blog-list">
+      <div className={blockComponents.blogList}>
         {blogPosts.map((post, index) => (
-          <article className="blog-post panel" key={post.slug}>
-            <div className="post-meta">
-              <span className="post-date">{post.date}</span>
-              <span className="post-number">#{blogPosts.length - index}</span>
+          <article
+            className={`${blockComponents.blogPost} ${blockComponents.panels}`}
+            key={post.slug}
+          >
+            <div className={blockComponents.postMeta}>
+              <span className={blockComponents.postDate}>{post.date}</span>
+              <span className={blockComponents.postNumber}>#{blogPosts.length - index}</span>
             </div>
-            <h2>{post.title}</h2>
-            <p className="post-excerpt">{post.excerpt}</p>
-            <div className="post-footer">
-              <Link className="read-link" to={`/blog/${post.slug}`}>
+            <h2 className={blockComponents.h2}>{post.title}</h2>
+            <p className={blockComponents.postExcerpt}>{post.excerpt}</p>
+            <div className={blockComponents.postFooter}>
+              <span className={blockComponents.readTime}>{post.date}</span>
+              <Link className={blockComponents.readLink} to={`/blog/${post.slug}`}>
                 Read more →
               </Link>
             </div>
@@ -30,33 +38,39 @@ export function BlogIndexPage() {
         ))}
       </div>
     </section>
-  );
+  )
 }
 
 export function BlogPostPage() {
-  const { slug } = useParams();
-  const post = blogPosts.find((entry) => entry.slug === slug);
+  const { slug } = useParams()
+  const post = blogPosts.find((entry) => entry.slug === slug)
 
   if (!post) {
-    return <Navigate replace to="/blog" />;
+    return <Navigate replace to="/blog" />
   }
 
   return (
-    <section className="page blog-post-page" aria-labelledby="blog-post-title">
-      <div className="page-copy">
-        <p className="eyebrow">blog / writing</p>
-        <h1 id="blog-post-title">{post.title}</h1>
+    <section className={blockComponents.page} aria-labelledby="blog-post-title">
+      <div className={blockComponents.pageCopy}>
+        <p className={blockComponents.eyebrow}>blog / writing</p>
+        <h1 className={blockComponents.h1} id="blog-post-title">
+          {post.title}
+        </h1>
       </div>
 
-      <article className="panel large-panel blog-post-detail">
+      <article className={`${blockComponents.panels} ${blockComponents.paddedPanel} grid gap-5`}>
         {post.content.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
+          <p className={blockComponents.proseParagraph} key={paragraph}>
+            {paragraph}
+          </p>
         ))}
       </article>
-      <br></br>
-      <Link className="secondary-link" to="/blog">
-        Back to blog
-      </Link>
+
+      <div className="mt-4">
+        <Link className={blockComponents.secondaryLink} to="/blog">
+          Back to blog
+        </Link>
+      </div>
     </section>
-  );
+  )
 }
