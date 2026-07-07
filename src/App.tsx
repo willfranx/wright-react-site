@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { Link, NavLink, Route, Routes } from 'react-router-dom'
+import { createElement, useEffect, useState } from 'react'
+import { Link, NavLink, Route, Routes, useLocation } from 'react-router-dom'
 import { blockComponents } from './content/siteComponents'
 import { BlogIndexPage, BlogPostPage } from './pages'
 import ActivismPage from './pages/ActivismPage'
@@ -26,6 +26,14 @@ function navClassName(isActive: boolean): string {
     : blockComponents.navLink
 }
 
+const navItems = [
+  { to: '/', label: 'Home', end: true },
+  { to: '/about', label: 'About Me' },
+  { to: '/activism', label: 'Activism' },
+  { to: '/photography', label: 'Photography' },
+  { to: '/blog', label: 'Blog' },
+]
+
 function SiteHeader({
   isDarkMode,
   onToggleTheme,
@@ -35,64 +43,101 @@ function SiteHeader({
 }) {
   return (
     <header className={blockComponents.topbar}>
-      <Link className={blockComponents.brand} to="/">
-        Wright Franklin
-      </Link>
+      <div className="flex w-full items-center justify-between gap-3 lg:gap-6">
+        <Link className={blockComponents.brand} to="/">
+          Wright Franklin
+        </Link>
 
-      <nav aria-label="Primary navigation">
-        <ul className={blockComponents.navList}>
-          <li className={blockComponents.navItem}>
-            <NavLink
-              end
-              className={({ isActive }) => navClassName(isActive)}
-              to="/"
-            >
-              Home
-            </NavLink>
-          </li>
-          <li className={blockComponents.navItem}>
-            <NavLink className={({ isActive }) => navClassName(isActive)} to="/about">
-              About Me
-            </NavLink>
-          </li>
-          <li className={blockComponents.navItem}>
-            <NavLink
-              className={({ isActive }) => navClassName(isActive)}
-              to="/activism"
-            >
-              Activism
-            </NavLink>
-          </li>
-          <li className={blockComponents.navItem}>
-            <NavLink
-              className={({ isActive }) => navClassName(isActive)}
-              to="/photography"
-            >
-              Photography
-            </NavLink>
-          </li>
-          <li className={blockComponents.navItem}>
-            <NavLink className={({ isActive }) => navClassName(isActive)} to="/blog">
-              Blog
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
+        <nav aria-label="Primary navigation" className="hidden lg:block">
+          <ul className={blockComponents.navList}>
+            {navItems.map((item) => (
+              <li className={blockComponents.navItem} key={item.to}>
+                <NavLink
+                  end={item.end}
+                  className={({ isActive }) => navClassName(isActive)}
+                  to={item.to}
+                >
+                  {item.label}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-      <button
-        className={blockComponents.themeToggle}
-        onClick={onToggleTheme}
-        aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-        title={isDarkMode ? 'Light mode' : 'Dark mode'}
-      >
-        <span className={blockComponents.themeIcon}>{isDarkMode ? '☀️' : '🌙'}</span>
-      </button>
+          <div className="flex items-center gap-2">
+          <button
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-[rgba(28,23,18,0.12)] bg-[rgba(255,255,255,0.6)] text-[#171412] transition-all duration-300 hover:-translate-y-px hover:bg-[rgba(255,255,255,0.85)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#b34f28] focus-visible:outline-offset-[3px] dark:border-[rgba(245,242,238,0.12)] dark:bg-[rgba(60,54,48,0.6)] dark:text-[#f5f2ee] dark:hover:bg-[rgba(60,54,48,0.85)] lg:hidden"
+            type="button"
+            command="--toggle"
+            commandfor="mobile-menu"
+            aria-label="Open main menu"
+          >
+            <span className="absolute -inset-0.5" />
+            <span className="sr-only">Open main menu</span>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              data-slot="icon"
+              aria-hidden="true"
+              className="size-6 in-aria-expanded:hidden"
+            >
+              <path
+                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              data-slot="icon"
+              aria-hidden="true"
+              className="size-6 not-in-aria-expanded:hidden"
+            >
+              <path d="M6 18 18 6M6 6l12 12" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </button>
+
+          <button
+            className={blockComponents.themeToggle}
+            type="button"
+            onClick={onToggleTheme}
+            aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={isDarkMode ? 'Light mode' : 'Dark mode'}
+          >
+            <span className={blockComponents.themeIcon}>{isDarkMode ? '☀️' : '🌙'}</span>
+          </button>
+        </div>
+      </div>
+      {createElement(
+        'el-disclosure',
+        { id: 'mobile-menu', hidden: true, className: 'mt-2 block lg:hidden' },
+        <div className="space-y-1 rounded-2xl bg-[rgba(255,255,255,0.8)] p-2 shadow-[rgba(15,12,8,0.08)_0_10px_24px_-12px] backdrop-blur-[12px] dark:bg-[rgba(30,26,23,0.9)]">
+          {navItems.map((item) => (
+            <NavLink
+              key={`mobile-${item.to}`}
+              end={item.end}
+              className={({ isActive }) =>
+                `${navClassName(isActive)} block w-full justify-start rounded-xl px-4 py-3 text-left`
+              }
+              to={item.to}
+            >
+              {item.label}
+            </NavLink>
+          ))}
+        </div>,
+      )}
     </header>
   )
 }
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => getDarkModePreference())
+  const location = useLocation()
 
   useEffect(() => {
     const htmlElement = document.documentElement
@@ -103,6 +148,10 @@ function App() {
     }
     setDarkModePreference(isDarkMode)
   }, [isDarkMode])
+
+  useEffect(() => {
+    document.getElementById('mobile-menu')?.setAttribute('hidden', '')
+  }, [location.pathname])
 
   return (
     <div className={blockComponents.siteShell}>

@@ -38,12 +38,14 @@ export default function PhotographyPage() {
 
                   <div className="grid grid-cols-1 gap-[18px]">
                     {group.photos.map((photo) => (
-                      <div className={blockComponents.photoCard} key={photo.src}>
-                        <img
-                          src={photo.src}
-                          alt={photo.label}
-                          className="max-h-[400px] w-full object-contain"
-                        />
+                      <div className={`${blockComponents.photoCard} p-2`} key={photo.src}>
+                        <div className="aspect-[3.5/1] overflow-hidden rounded-[22px] bg-[rgba(255,255,255,0.45)] dark:bg-[rgba(60,54,48,0.35)]">
+                          <img
+                            src={photo.src}
+                            alt={photo.label}
+                            className="h-full w-full object-cover"
+                          />
+                        </div>
                       </div>
                     ))}
                   </div>

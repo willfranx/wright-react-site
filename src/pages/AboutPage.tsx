@@ -32,7 +32,7 @@ export default function AboutPage() {
             well. Thanks for looking!
           </p>
           <div className="mt-4">
-            <a className={blockComponents.secondaryLink} href={resumePdf} target="_blank" rel="noreferrer">
+            <a className={blockComponents.buttons} href={resumePdf} target="_blank" rel="noreferrer">
               My resume
             </a>
           </div>

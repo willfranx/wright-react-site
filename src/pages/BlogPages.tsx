@@ -59,11 +59,28 @@ export function BlogPostPage() {
       </div>
 
       <article className={`${blockComponents.panels} ${blockComponents.paddedPanel} grid gap-5`}>
-        {post.content.map((paragraph) => (
-          <p className={blockComponents.proseParagraph} key={paragraph}>
-            {paragraph}
-          </p>
-        ))}
+        {post.content.map((block, index) => {
+          if (block.type === 'paragraph') {
+            return (
+              <p className={blockComponents.proseParagraph} key={`${block.type}-${index}`}>
+                {block.text}
+              </p>
+            )
+          }
+
+          return (
+            <figure className="grid gap-3 justify-items-start" key={`${block.type}-${index}`}>
+              <div className="inline-block overflow-hidden">
+                <img src={block.src} alt={block.alt} className="block h-auto w-auto max-w-full" />
+              </div>
+              {block.caption ? (
+                <figcaption className="text-sm text-[#4f4a46] dark:text-[#c8bfb5]">
+                  {block.caption}
+                </figcaption>
+              ) : null}
+            </figure>
+          )
+        })}
       </article>
 
       <div className="mt-4">
