@@ -70,3 +70,4 @@ Thumbs.db
 
 # large media files
 /src/assets/
+/src/content/blog/posts/
