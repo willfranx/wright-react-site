@@ -47,7 +47,7 @@ export const blockComponents = {
     "inline-flex min-h-11 items-center justify-center rounded-full border border-[rgba(28,23,18,0.12)] bg-[rgba(255,255,255,0.65)] px-[18px] text-[#171412] no-underline transition-transform duration-200 hover:-translate-y-px dark:border-[rgba(245,242,238,0.12)] dark:bg-[rgba(60,54,48,0.65)] dark:text-[#f5f2ee]",
   photoGrid: "mt-6 grid grid-cols-1 gap-[18px]",
   photoCard:
-    "mb-4 overflow-hidden rounded-[28px] border border-[rgba(28,23,18,0.12)] shadow-[rgba(15,12,8,0.1)_0_18px_40px_-20px,rgba(15,12,8,0.08)_0_8px_18px_-10px] dark:border-[rgba(245,242,238,0.12)] dark:shadow-[rgba(0,0,0,0.35)_0_18px_40px_-20px,rgba(0,0,0,0.2)_0_8px_18px_-10px]",
+    "mb-4 overflow-hidden rounded-[28px] shadow-[rgba(15,12,8,0.1)_0_18px_40px_-20px,rgba(15,12,8,0.08)_0_8px_18px_-10px] dark:border-[rgba(245,242,238,0.12)] dark:shadow-[rgba(0,0,0,0.35)_0_18px_40px_-20px,rgba(0,0,0,0.2)_0_8px_18px_-10px]",
   cardKicker:
     "mb-4 text-[0.8rem] tracking-[0.16em] text-[#171412] dark:text-[#f5f2ee]",
   blogList: "mt-6 grid gap-4",

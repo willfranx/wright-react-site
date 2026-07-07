@@ -48,7 +48,7 @@ export default function AboutPage() {
         </article>
 
         <section
-          className={`${blockComponents.connectSection} ${blockComponents.panels}`}
+          className={`${blockComponents.connectSection} ${blockComponents.panels} lg:col-span-full`}
           aria-labelledby="connect-title"
         >
           <div className={blockComponents.connectCopy}>
